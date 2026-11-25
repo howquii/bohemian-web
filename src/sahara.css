@@ -1,0 +1,173 @@
+/* *BOHEMIAN · capa «Sahara de lujo»
+   Colores de marca originales con fondos arena clara y blanco hueso, geometría de líneas finas (sol, arcos, horizonte, estrella de 8 puntas)
+   y marcos en arco. Se carga después de sitio.css y redefine sus tokens. */
+:root {
+  /* Colores de marca originales (manual v1) + fondos arena clara y blanco hueso */
+  --arena-claro: #FAF7F1;   /* blanco hueso: fondo general */
+  --arena: #F0E8DA;         /* arena clara: secciones alternas */
+  --duna: #E2D6C2;          /* líneas y bordes cálidos suaves */
+  --ocre: #3D7692;          /* teal de marca: ornamentos y acento */
+  --ocre-osc: #3D7692;
+  --noche: #0E2A36;         /* noche de marca */
+  --brasa: #16323F;
+
+  --tinta: #262626;
+  --gris: #6E6B67;
+  --sutil: #8A8782;
+  --blanco: #FDFBF7;
+  --frio: var(--arena);
+  --linea: #DDD3C3;
+  --franja: #F5EFE5;
+  --teal: #3D7692;
+}
+body { background: var(--arena-claro); }
+::selection { background: var(--duna); color: var(--tinta); }
+
+/* Grano de papel/arena: fijo y sin eventos, no repinta al hacer scroll */
+body::after {
+  content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .055; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .2 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Etiquetas con estrella de cuatro puntas */
+.label { color: var(--ocre-osc); display: inline-flex; align-items: center; gap: 10px; }
+.label::before {
+  content: ''; width: 10px; height: 10px; flex: none; background: currentColor;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  transition: transform 1.2s cubic-bezier(.16,1,.3,1);
+}
+.label.girar::before { transform: rotate(180deg); }
+.bloque--noche .label, .hero .label { color: #8FB9CC; }
+
+/* Navegación */
+.nav--solida { background: rgba(250,247,241,.9); border-bottom-color: rgba(61,118,146,.25); }
+
+/* Botones: relleno que sube como arena */
+.boton { position: relative; overflow: hidden; isolation: isolate; transition: color .45s, border-color .45s, background .45s; }
+.boton::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--ocre); transform: translateY(101%); transition: transform .5s cubic-bezier(.16,1,.3,1); }
+.boton:hover::before { transform: translateY(0); }
+.boton:hover { border-color: var(--ocre); color: var(--blanco); }
+.boton:active { transform: translateY(1px); }
+.boton--lleno { background: var(--ocre-osc); border-color: var(--ocre-osc); }
+.boton--lleno::before, .boton--tinta::before { background: var(--noche); }
+.boton--lleno:hover { background: var(--ocre-osc); border-color: var(--noche); }
+.boton--tinta:hover { background: var(--tinta); border-color: var(--noche); }
+
+/* Hero: noche cálida en lugar de azul */
+.hero__media { background: var(--noche); }
+.hero__media::after { background:
+  radial-gradient(circle at 76% 46%, rgba(241,230,211,.2) 0%, rgba(241,230,211,0) 34%),
+  linear-gradient(90deg, rgba(14,42,54,.78) 0%, rgba(14,42,54,.35) 45%, rgba(14,42,54,.2) 100%),
+  linear-gradient(180deg, rgba(14,42,54,.5) 0%, rgba(14,42,54,0) 30%, rgba(14,42,54,.9) 100%); }
+.hero__media img { filter: sepia(.1) saturate(.92) brightness(.9) contrast(1.04); }
+
+/* Emblema de líneas (sol, órbitas, horizonte, estrella) */
+.orn { position: absolute; pointer-events: none; color: var(--ocre); fill: none; stroke: currentColor; stroke-width: 1.2; overflow: visible; }
+.orn [data-trazo] { stroke-dasharray: 1; stroke-dashoffset: 0; vector-effect: non-scaling-stroke; }
+.orn .relleno { fill: currentColor; stroke: none; }
+.orn--hero { right: max(-6vw, -80px); top: 50%; width: min(62vw, 820px); aspect-ratio: 1; transform: translateY(-52%); color: #F1E6D3; opacity: .9; z-index: 1; }
+.orn--hero .rayos { transform-origin: 300px 300px; animation: girar 160s linear infinite; }
+.orn--hero .estrella { transform-origin: 300px 300px; animation: girar 90s linear infinite reverse; }
+.hero__texto { z-index: 2; }
+@media (max-width: 860px) { .orn--hero { width: 120vw; right: -50vw; top: 34%; opacity: .45; } }
+
+/* Separador de duna entre secciones */
+.duna { position: absolute; left: 50%; transform: translateX(-50%); top: clamp(26px, 4.4vw, 60px); width: min(calc(100% - 2 * var(--margen)), var(--max)); height: 28px; color: var(--ocre); }
+.bloque--noche .duna { color: #5E8FA6; }
+
+/* Constelación en las secciones de noche */
+.bloque--noche { background: radial-gradient(120% 80% at 85% 0%, #1B4152 0%, var(--noche) 55%); overflow: hidden; }
+.bloque--noche > .envoltura { position: relative; z-index: 1; }
+.orn--cielo { inset: 0; width: 100%; height: 100%; color: #8FB9CC; opacity: .55; }
+.orn--cielo .astro { fill: #F1E6D3; stroke: none; animation: titilar 4.5s ease-in-out infinite; }
+.orn--cielo .astro:nth-of-type(3n) { animation-delay: -1.6s; }
+.orn--cielo .astro:nth-of-type(4n) { animation-delay: -3.1s; }
+.bloque--noche .intro p, .tech__item span { color: rgba(250,247,241,.74); }
+.tech__item i { color: #8FB9CC; }
+.tech__lista, .tech__item { border-color: rgba(143,185,204,.2); }
+
+/* Arcos: fotos con remate curvo y una segunda línea que las acompaña */
+.arco { border-radius: 999px 999px 6px 6px !important; outline: 1px solid rgba(61,118,146,.55); outline-offset: 10px; }
+.arco--bajo { border-radius: 50% 50% 6px 6px / 42% 42% 6px 6px !important; }
+.destacada__foto, .mapa-casa { margin: 12px; }
+.chip { background: rgba(253,251,247,.92); }
+
+/* Listas y cifras en tonos arena */
+.linea__num, .cifra b { color: var(--ocre-osc); }
+.linea li::before { background: var(--ocre); }
+.paso { border-top-color: var(--ocre); }
+.detalle__col { border-top-color: var(--ocre); }
+.detalle__col li::before { background: none; width: 7px; height: 7px; top: .5em; border-radius: 0; background: var(--ocre); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); }
+.datos-casa { border-color: var(--duna); }
+.datos-casa li + li { border-left-color: var(--duna); }
+.datos-casa b { color: var(--ocre-osc); }
+.horarios { background: var(--duna); border-color: var(--duna); }
+.horarios > div { background: var(--blanco); }
+.amenidades li { background: transparent; border-color: var(--duna); }
+.pestanas { background: transparent; border-color: var(--duna); }
+.pestanas button[aria-selected="true"] { background: var(--ocre-osc); }
+.faq summary::after { color: var(--ocre-osc); }
+.faq { border-top-color: var(--duna); }
+.faq details { border-bottom-color: var(--duna); }
+.campo input, .campo select, .campo textarea { border-bottom-color: var(--duna); }
+.opciones span { border-color: var(--duna); }
+.reserva { background: var(--blanco); border-color: var(--duna); box-shadow: 0 30px 60px -40px rgba(14,42,54,.18); }
+.espacios { background: var(--duna); border-color: var(--duna); }
+.espacio { background: var(--blanco); }
+.mosaico figure { background: var(--duna); }
+
+/* Página de la casa */
+.ficha-casa > div:first-child { position: relative; }
+.orn--ficha { left: -14%; top: -90px; width: min(70vw, 560px); aspect-ratio: 1; opacity: .35; z-index: -1; }
+.etiqueta { background: var(--blanco); color: var(--tinta); }
+.etiqueta::after { background: var(--blanco); }
+.visor__tira button.on { border-color: #F1E6D3; }
+
+/* Pie: noche con el sol que se pone detrás de la marca */
+.pie { background: var(--noche); color: rgba(250,247,241,.66); position: relative; overflow: hidden; }
+.pie > .envoltura { position: relative; z-index: 1; }
+.pie__marca { color: #FAF7F1; }
+.pie__fila { border-top-color: rgba(143,185,204,.2); }
+.orn--pie { right: -8%; bottom: -46%; width: min(80vw, 900px); aspect-ratio: 1; color: #3D7692; opacity: .6; }
+
+@keyframes girar { to { transform: rotate(360deg); } }
+@keyframes titilar { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .orn--hero .rayos, .orn--hero .estrella, .orn--cielo .astro { animation: none; }
+  .boton::before { transition: none; }
+}
+
+.orn--intro { left: -10%; top: 40px; width: min(56vw, 640px); opacity: .28; z-index: 0; }
+main > .bloque > .envoltura { position: relative; z-index: 1; }
+/* Un mismo grado cálido para todas las fotos, para que convivan con la arena */
+.linea__foto img, .galeria img, .destacada__foto img, .mosaico img, .tech__foto img { filter: sepia(.06) saturate(.95); }
+
+/* Tipografía alineada al logotipo *BOHEMIAN: Forum en mayúsculas con el mismo interletrado (.02em),
+   tamaños algo menores porque la caja alta ocupa más, y párrafos más compactos. */
+h1, h2, h3, .titular, .faq summary, .espacio b, .datos-casa b, .horarios b, .detalle__col h3, .tech__item b, .reserva h2 {
+  text-transform: uppercase; letter-spacing: .02em;
+}
+h1, h2, h3 { line-height: 1; }
+.hero h1 { font-size: clamp(38px, 6.4vw, 104px); max-width: 15ch; }
+.titular { font-size: clamp(34px, 5.2vw, 78px); max-width: 17ch; }
+.titular--medio { font-size: clamp(28px, 3.7vw, 52px); }
+.ficha-casa h1 { font-size: clamp(36px, 5.2vw, 76px); max-width: 15ch; }
+.linea h3 { font-size: clamp(24px, 2.7vw, 38px); }
+.paso h3 { font-size: clamp(21px, 2.1vw, 29px); }
+.detalle__col h3 { font-size: 21px; }
+.faq summary { font-size: clamp(18px, 1.8vw, 24px); line-height: 1.2; }
+.espacio b { font-size: 18px; }
+.horarios b { font-size: 20px; }
+.reserva h2 { font-size: 26px; }
+.tech__item b { font-size: 19px; }
+.pie__marca { letter-spacing: .02em; }
+
+/* Párrafos: menos interlineado y menos aire entre bloques */
+body { line-height: 1.45; }
+.intro p, .destacada__texto p, .linea p, .paso p, .detalle__col p, .faq details p, .hero__pie p, .tech__item span, .espacio span, .horarios p { line-height: 1.45; }
+.intro p { font-size: clamp(16px, 1.3vw, 19px); }
+.destacada__texto, .hero__texto { gap: 18px; }
+.paso { gap: 8px; }
+.ficha-casa h1 + p, .ficha-casa h1 ~ p { line-height: 1.45 !important; }
+.faq details p { margin-bottom: clamp(14px, 2vw, 22px); }

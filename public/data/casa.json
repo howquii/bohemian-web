@@ -1,0 +1,76 @@
+{
+  "nombre": "Casa de campo",
+  "nota": "Posiciones en píxeles de la esfera 2000×1000 (x, y), aunque las imágenes estén en 6000×3000. x/ancho → yaw, y/alto → pitch.",
+  "escenas": [
+    { "id": "aerea", "nombre": "Vista aérea", "imagen": "/pano/casa/05-aerea.jpg", "preview": "/pano/casa/05-aerea-preview.jpg", "inicio": [900, 640],
+      "puntos": [
+        { "t": "Piscina", "xy": [470, 700] },
+        { "t": "Terraza techada", "xy": [770, 610] },
+        { "t": "Mirador y fogata", "xy": [820, 545] },
+        { "t": "Cancha de vóley", "xy": [1040, 600] },
+        { "t": "Casa · 4 habitaciones", "xy": [1420, 700] },
+        { "t": "Hamacas", "xy": [1290, 780] }
+      ],
+      "saltos": [
+        { "a": "terraza", "xy": [790, 680] },
+        { "a": "entrada", "xy": [1370, 580] }
+      ] },
+    { "id": "terraza", "nombre": "Terraza y parrilla", "imagen": "/pano/casa/06-terraza.jpg", "preview": "/pano/casa/06-terraza-preview.jpg", "inicio": [900, 560],
+      "puntos": [
+        { "t": "Piscina", "xy": [830, 560] },
+        { "t": "Horno de barro", "xy": [1065, 560] },
+        { "t": "Parrilla", "xy": [1335, 590] },
+        { "t": "Comedor exterior", "xy": [1010, 760] },
+        { "t": "Sala lounge", "xy": [250, 640] },
+        { "t": "Casa · habitaciones", "xy": [330, 500] }
+      ],
+      "saltos": [
+        { "a": "jardin", "xy": [600, 600] },
+        { "a": "aerea", "xy": [700, 420] }
+      ] },
+    { "id": "jardin", "nombre": "Jardín", "imagen": "/pano/casa/01-jardin.jpg", "preview": "/pano/casa/01-jardin-preview.jpg", "inicio": [1000, 560],
+      "puntos": [
+        { "t": "Piscina", "xy": [915, 590] },
+        { "t": "Terraza techada", "xy": [1230, 560] },
+        { "t": "Casa · habitaciones", "xy": [250, 560] },
+        { "t": "Zona de parrilla", "xy": [1500, 560] }
+      ],
+      "saltos": [
+        { "a": "terraza", "xy": [1230, 610] },
+        { "a": "mirador", "xy": [1520, 440] },
+        { "a": "cancha", "xy": [1715, 575] }
+      ] },
+    { "id": "mirador", "nombre": "Mirador y fogata", "imagen": "/pano/casa/02-mirador.jpg", "preview": "/pano/casa/02-mirador-preview.jpg", "inicio": [1150, 620],
+      "puntos": [
+        { "t": "Casa · paneles solares", "xy": [1130, 625] },
+        { "t": "Piscina", "xy": [1545, 655] },
+        { "t": "Fogata", "xy": [1880, 790] },
+        { "t": "Estacionamiento", "xy": [985, 600] }
+      ],
+      "saltos": [
+        { "a": "cancha", "xy": [900, 720] },
+        { "a": "jardin", "xy": [1200, 740] }
+      ] },
+    { "id": "cancha", "nombre": "Cancha de vóley", "imagen": "/pano/casa/03-cancha.jpg", "preview": "/pano/casa/03-cancha-preview.jpg", "inicio": [850, 600],
+      "puntos": [
+        { "t": "Casa · paneles solares", "xy": [590, 610] },
+        { "t": "Piscina", "xy": [870, 580] },
+        { "t": "Zona de parrilla", "xy": [1160, 660] }
+      ],
+      "saltos": [
+        { "a": "mirador", "xy": [1120, 548] },
+        { "a": "jardin", "xy": [880, 720] }
+      ] },
+    { "id": "entrada", "nombre": "Ingreso y estacionamiento", "imagen": "/pano/casa/04-entrada.jpg", "preview": "/pano/casa/04-entrada-preview.jpg", "inicio": [1000, 640],
+      "puntos": [
+        { "t": "Estacionamiento", "xy": [560, 700] },
+        { "t": "Portón de ingreso", "xy": [990, 610] },
+        { "t": "Paneles solares", "xy": [1370, 640] },
+        { "t": "Cancha de vóley", "xy": [1830, 720] },
+        { "t": "Piscina", "xy": [1330, 575] }
+      ],
+      "saltos": [
+        { "a": "aerea", "xy": [1250, 520] }
+      ] }
+  ]
+}

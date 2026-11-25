@@ -1,0 +1,13 @@
+{
+  "nombre": "Proyecto de lotes · demo",
+  "empresa": "*BOHEMIAN · datos de ejemplo",
+  "ubicacion": "Oxapampa, Pasco",
+  "moneda": "S/",
+  "separacion": 500,
+  "inicial_pct": 10,
+  "cuotas": [12, 24, 36, 48],
+  "tasa_anual_pct": 0,
+  "colores": { "disponible": "#2fb36b", "separado": "#e3b23c", "vendido": "#d9534f" },
+  "centro": [-75.41611, -10.5930],
+  "zoom": 17.4
+}

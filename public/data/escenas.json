@@ -1,0 +1,8 @@
+[
+  { "id": "alta", "nombre": "Vista aérea alta", "imagen": "/pano/esfera-alta.jpg", "preview": "/pano/esfera-alta-preview.jpg",
+    "lat": -10.591815764, "lng": -75.415787132, "heading": -159.3, "altura_m": 102.5,
+    "fuente": "XMP DJI_20260813091723_0059_D.jpg (GimbalYawDegree, RelativeAltitude)" },
+  { "id": "baja", "nombre": "Vista aérea baja", "imagen": "/pano/esfera-baja.jpg", "preview": "/pano/esfera-baja-preview.jpg",
+    "lat": -10.591909489, "lng": -75.41607805, "heading": -158.7, "altura_m": 47.5,
+    "fuente": "XMP DJI_20260813091819_0061_D.jpg (GimbalYawDegree, RelativeAltitude)" }
+]
